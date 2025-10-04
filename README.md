@@ -564,44 +564,6 @@ The application is fully responsive and optimized for:
 - **Tablet**: Adapted layout with touch-friendly interactions
 - **Mobile**: Optimized mobile experience with hamburger menu and touch gestures
 
-### 📸 Screenshots
-
-#### Home Page
-![Home Page](/screenshots/home-page.png)
-
-#### Products Collection
-![Products Collection](/screenshots/products-collection.png)
-
-#### Product Detail Page
-![Product Detail](/screenshots/product-detail.png)
-
-#### Shopping Cart
-![Shopping Cart](/screenshots/shopping-cart.png)
-
-#### Checkout Page
-![Checkout Page](/screenshots/checkout-page.png)
-
-#### Guest Checkout
-![Guest Checkout](/screenshots/guest-checkout.png)
-
-#### Order Management
-![Order Management](/screenshots/order-management.png)
-
-#### Blog Section
-![Blog Section](/screenshots/blog-section.png)
-
-#### Contact Page
-![Contact Page](/screenshots/contact-page.png)
-
-#### About Us Page
-![About Us](/screenshots/about-us.png)
-
-#### Dark Theme
-![Dark Theme](/screenshots/dark-theme.png)
-
-#### Mobile View
-![Mobile View](/screenshots/mobile-view.png)
-
 ## 🤝 Contributing
 
 We welcome contributions from the community! Whether it's bug fixes, new features, or documentation improvements.
