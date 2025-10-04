@@ -1,6 +1,6 @@
 {
-  "name": "frontend",
-  "homepage": "https://www.ymgspharmacy.com",
+  "name": "tibu-pharmacy-frontend",
+  "homepage": "https://www.tibupharmacy.com",
   "private": true,
   "version": "0.0.0",
   "type": "module",

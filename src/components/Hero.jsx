@@ -1,11 +1,19 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { assets } from "../assets/assets";
+import { imageUrls } from "../assets/imageConfig";
 import { useState, useEffect } from "react";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const sliderImages = [assets.image3, assets.image1, assets.image2];
+  // Use real pharmaceutical images for hero slider
+  const sliderImages = [
+    imageUrls.hero.main,
+    imageUrls.categories.prescription,
+    imageUrls.categories.healthcare,
+    imageUrls.products[6], // Variety of medicines
+    imageUrls.products[8]  // Pill boxes
+  ];
 
   // Auto-rotate slides every 5 seconds
   useEffect(() => {
@@ -29,7 +37,7 @@ const Hero = () => {
 
   return (
     <div className="flex flex-col sm:flex-row dark:bg-gray-800">
-      <section className="pt-12 pb-12 container pr-0 pl-0 pb-0">
+      <section className="pt-12 pb-0 container pr-0 pl-0">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
           <div
             className="flex-1 relative animate-fade-up"

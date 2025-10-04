@@ -23,7 +23,7 @@ import Policy from './pages/Policy'
 
 const App = () => {
   return(
-    <div className='bg-white dark:bg-gray-800 transition-colors font-sans'>
+            <div className='bg-gray-50 dark:bg-gray-900 transition-colors font-roboto min-h-screen'>
       <ScrollToTop/>
       <ToastContainer position='bottom-right' autoClose={2000} />
       <NavBar />

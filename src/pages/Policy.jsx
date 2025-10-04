@@ -64,7 +64,7 @@ const Policy = () => {
             <div className="flex items-center gap-2">
               <ScrollText className="text-primary" size={24} />
               <h2 className="text-xl font-semibold">
-                YMGS Pharmacy Terms and Conditions
+                Tibu Pharmacy Terms and Conditions
               </h2>
             </div>
             <button
@@ -87,7 +87,7 @@ const Policy = () => {
                   1. Acceptance of Terms
                 </h3>
                 <p>
-                  By accessing or using YMGS Pharmacy Medicine services, you
+                  By accessing or using Tibu Pharmacy medicine services, you
                   agree to be bound by these Terms and Conditions. If you do not
                   agree to all the terms and conditions, you may not access or
                   use our services.
@@ -102,7 +102,7 @@ const Policy = () => {
                   2. Delivery Policy
                 </h3>
                 <p>
-                  YMGS Pharmacy strives to deliver medicines within the
+                  Tibu Pharmacy strives to deliver medicines within the
                   estimated delivery time. However, delivery times may vary
                   based on location and availability. For prescription
                   medications, a valid prescription is required before
@@ -170,7 +170,7 @@ const Policy = () => {
                   5. Disclaimer of Warranties
                 </h3>
                 <p>
-                  YMGS Pharmacy provides information on medicines for general
+                  Tibu Pharmacy provides information on medicines for general
                   informational purposes only. This information should not be
                   considered as medical advice. Always consult with a qualified
                   healthcare provider for medical advice, diagnosis, or
@@ -203,8 +203,8 @@ const Policy = () => {
                     </li>
                   ) : (
                     <>
-                      <li>Email: {contactInfo.footerPhone}</li>
-                      <li>Phone: {contactInfo.footerEmail}</li>
+                      <li>Email: {contactInfo.footerEmail}</li>
+                      <li>Phone: {contactInfo.footerPhone}</li>
                     </>
                   )}
                   <li>Chat support on our website</li>
@@ -234,7 +234,7 @@ const Policy = () => {
 
         <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
           <p className="text-sm text-gray-500 text-center">
-            Last updated: March 2025. YMGS Pharmacy reserves the right to modify
+            Last updated: March 2025. Tibu Pharmacy reserves the right to modify
             these terms and conditions at any time. Continued use of our
             services after any modifications indicates your acceptance of the
             updated terms.

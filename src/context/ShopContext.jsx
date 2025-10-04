@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
+import { api, baseURL as resolvedBaseURL } from '../lib/apiClient.js';
 import PropTypes from 'prop-types';
 
 export const ShopContext = createContext();
@@ -10,7 +11,8 @@ const ShopContextProvider = (props) => {
     
     const currency = '$';
     const delivery_fee = 35;
-    const backendUrl = import.meta.env.VITE_BACKEND_URL
+    // Prefer centralized api client base URL but keep original for backward compatibility
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || resolvedBaseURL;
     const [search, setSearch] = useState('');
     const [showSearch, setShowSearch]= useState(false);
     const [cartItems, setCartItem] = useState({});
@@ -59,7 +61,7 @@ const ShopContextProvider = (props) => {
         try {
             setLoading(true);            
             // Use the new user-specific endpoint
-            const response = await axios.post(backendUrl + '/api/product/user/list', {
+            const response = await api.post('/api/product/user/list', {
                 page: 1, // Always start at page 1 for a new filter set
                 limit: productsPagination.limit,
                 ...currentFilters,
@@ -106,7 +108,7 @@ const ShopContextProvider = (props) => {
             setLoading(true);
             
             // Use the new user-specific endpoint
-            const response = await axios.post(backendUrl + '/api/product/user/list', {
+            const response = await api.post('/api/product/user/list', {
                 page: page,
                 limit: productsPagination.limit,
                 ...filters,
@@ -151,10 +153,12 @@ const ShopContextProvider = (props) => {
             cartData.quantity = 1;
         }
 
-        // Find the product to check for minimum order quantity
-        const product = products.find(p => p._id === itemId);
+        // Attempt to find product in main list or fallback to featured list
+        const product = products.find(p => p._id === itemId) || featuredProducts.find(p => p._id === itemId);
+        
         if (!product) {
-            console.error('Product not found');
+            console.error('Product not found with ID:', itemId);
+            toast.error('Product not found. Please refresh the page and try again.');
             return;
         }
 
@@ -174,7 +178,7 @@ const ShopContextProvider = (props) => {
             toast.success('Item Added to Cart');
 
             if(token){
-                await axios.post(backendUrl + '/api/cart/add', {
+                await api.post('/api/cart/add', {
                     itemId, 
                     cartData
                 }, {
@@ -235,7 +239,7 @@ const ShopContextProvider = (props) => {
                 setCartItem(newCartItems);
 
                 if (token) {
-                    await axios.post(backendUrl + '/api/cart/update', {
+                    await api.post('/api/cart/update', {
                         itemId, 
                         cartData: { quantity: 0 }
                     }, {
@@ -245,10 +249,11 @@ const ShopContextProvider = (props) => {
                 return;
             }
 
-            // Find the product to check for minimum order quantity
-            const product = products.find(p => p._id === itemId);
+            // Attempt to find product in main list or fallback to featured list
+            const product = products.find(p => p._id === itemId) || featuredProducts.find(p => p._id === itemId);
+            
             if (!product) {
-                console.error('Product not found');
+                console.error('Product not found with ID:', itemId);
                 return;
             }
 
@@ -266,7 +271,7 @@ const ShopContextProvider = (props) => {
             setCartItem(newCartItems);
 
             if (token) {
-                await axios.post(backendUrl + '/api/cart/update', {
+                await api.post('/api/cart/update', {
                     itemId, 
                     cartData
                 }, {
@@ -293,7 +298,7 @@ const ShopContextProvider = (props) => {
                 const quantity = typeof item === 'object' ? item.quantity : item;
                 if (quantity <= 0) continue;
 
-                const product = products.find((p) => p._id === itemId);
+                const product = products.find((p) => p._id === itemId) || featuredProducts.find((p) => p._id === itemId);
                 const price = product ? parseFloat(product.price) : 0;
                 totalAmount += price * quantity;
             }
@@ -312,7 +317,7 @@ const ShopContextProvider = (props) => {
         } else {
             // For regular items, multiply price by quantity
             const quantity = typeof item === 'object' ? item.quantity : item;
-            const product = products.find((p) => p._id === itemId);
+            const product = products.find((p) => p._id === itemId) || featuredProducts.find((p) => p._id === itemId);
             const price = product ? parseFloat(product.price) : 0;
             return price * quantity;
         }
@@ -325,16 +330,35 @@ const ShopContextProvider = (props) => {
             
             // If it's the initial load, just get featured products
             if (initialLoad) {
-                // Use the new user-specific endpoint
-                const featuredResponse = await axios.post(backendUrl + '/api/product/user/list', {
+                // Fetch featured products first
+                const featuredResponse = await api.post('/api/product/user/list', {
                     limit: 10,
                     bestseller: true,
                     sortBy: 'date',
                     sortOrder: 'desc'
                 });
-                
+
                 if (featuredResponse.data.success) {
                     setFeaturedProducts(featuredResponse.data.products);
+                }
+
+                // Immediately fetch the main products list (page 1) without filters
+                const mainResponse = await api.post('/api/product/user/list', {
+                    page: 1,
+                    limit: productsPagination.limit,
+                    ...filters,
+                    search: filters.search || search
+                });
+
+                if (mainResponse.data.success) {
+                    setProducts(mainResponse.data.products);
+                    setProductsPagination(prev => ({
+                        ...prev,
+                        total: mainResponse.data.pagination.total,
+                        pages: mainResponse.data.pagination.pages,
+                        currentPage: mainResponse.data.pagination.currentPage,
+                        limit: mainResponse.data.pagination.limit
+                    }));
                 }
                 setLoading(false);
                 return;
@@ -342,7 +366,7 @@ const ShopContextProvider = (props) => {
             
             // For regular page loads, use filters and pagination
             // Use the new user-specific endpoint
-            const response = await axios.post(backendUrl + '/api/product/user/list', {
+            const response = await api.post('/api/product/user/list', {
                 page: productsPagination.currentPage,
                 limit: productsPagination.limit,
                 ...filters,
@@ -372,7 +396,7 @@ const ShopContextProvider = (props) => {
     const getProductById = async (productId) => {
         try {
             setLoading(true);
-            const response = await axios.get(`${backendUrl}/api/product/${productId}`);
+            const response = await api.get(`/api/product/${productId}`);
             if (response.data.success) {
                 return response.data.product;
             } else {
@@ -393,7 +417,7 @@ const ShopContextProvider = (props) => {
         try {
             setLoading(true);
             // Use the new user-specific endpoint
-            const response = await axios.post(backendUrl + '/api/product/user/list', {
+            const response = await api.post('/api/product/user/list', {
                 category,
                 subCategory,
                 excludeId,
@@ -417,7 +441,7 @@ const ShopContextProvider = (props) => {
 
     const getUserCart = async (token) => {
         try {
-            const response = await axios.post(backendUrl + '/api/cart/get', {}, {headers:{token}});
+            const response = await api.post('/api/cart/get', {}, {headers:{token}});
             if (response.data.success) {
                 // Make sure we're setting the complete cart data structure
                 const cartData = response.data.cartData || {};
@@ -521,7 +545,14 @@ const ShopContextProvider = (props) => {
         setPage,
         getProductById,
         getRelatedProducts,
-        getTypeOfProductsAddedInCart
+        getTypeOfProductsAddedInCart,
+        apiClient: api,
+        healthCheck: async () => {
+            try {
+                const res = await api.get('/health');
+                return res.data;
+            } catch (e) { return { status: 'down', error: e.message }; }
+        }
     }
 
     return(

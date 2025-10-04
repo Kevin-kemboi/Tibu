@@ -1,93 +1,136 @@
-# [YMGS Pharmacy](https://ymgs-frontend.vercel.app/) &middot; [![Author Sanskar Gupta](https://img.shields.io/badge/Author-Sanskar-%3C%3E)](https://www.linkedin.com/in/sanskar-gupta-12476423b/)  
-[![GitHub](https://img.shields.io/badge/GitHub-%3C%3E)](https://github.com/Sanskargupta0/YMGS-Frontend)  
-[![React](https://img.shields.io/badge/React-%3C%3E)](https://react.dev/)  
-[![Vite](https://img.shields.io/badge/Vite-%3C%3E)](https://vitejs.dev/)  
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-%3C%3E)](https://tailwindcss.com/)
+# Tibu Pharmacy 🏥 
 
-## 📝 Project Description
+[![React](https://img.shields.io/badge/React-18.3-blue?logo=react)](https://react.dev/)  
+[![Vite](https://img.shields.io/badge/Vite-6.0-purple?logo=vite)](https://vitejs.dev/)  
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-cyan?logo=tailwindcss)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-YMGS Pharmacy is a modern, full-featured e-commerce platform for online medicine and healthcare product delivery. Built with React and Vite, this frontend application provides a seamless shopping experience for customers to browse, search, and purchase medicines, health supplements, and medical supplies. The platform features a responsive design, dark/light theme support, multiple payment methods, guest checkout functionality, and comprehensive order management capabilities.
+> **Your trusted online pharmacy in Kenya** - Quality medicines and healthcare products delivered to your doorstep 🇰🇪
+
+## 📝 About Tibu Pharmacy
+
+Tibu Pharmacy is a modern, full-featured e-commerce platform designed specifically for the Kenyan healthcare market. Built with cutting-edge web technologies, our platform provides a seamless shopping experience for customers to browse, search, and purchase authentic pharmaceutical products, health supplements, and medical supplies from the comfort of their homes.
+
+### Why Tibu Pharmacy?
+
+- **🎯 Kenya-Focused**: Localized for Kenyan customers with M-Pesa integration, local delivery, and Kenyan Shilling pricing
+- **💊 Authentic Products**: Professional pharmaceutical imagery from trusted stock photo libraries
+- **🚀 Lightning Fast**: Built with React 18 and Vite 6 for optimal performance
+- **📱 Mobile-First**: Fully responsive design optimized for smartphones and tablets
+- **🌓 Theme Support**: Beautiful dark and light themes for comfortable browsing
+- **💳 Multiple Payment Options**: Support for various payment methods including cryptocurrencies
+- **🔒 Secure & Private**: Your health information is protected with industry-standard security
 
 ## ⚙️ Tech Stack
 
-- **Frontend Framework**: React 18
-- **Build Tool**: Vite 6
-- **Styling**: Tailwind CSS 3
-- **Routing**: React Router DOM 7
-- **HTTP Client**: Axios
-- **UI Components**: Lucide React (Icons)
-- **Carousel/Slider**: Swiper.js
-- **Notifications**: React Toastify
-- **Development**: ESLint, PostCSS
+### Core Technologies
+
+- **Frontend Framework**: React 18.3 - Modern UI library with hooks and context API
+- **Build Tool**: Vite 6.0 - Lightning-fast development and optimized production builds
+- **Styling**: Tailwind CSS 3.4 - Utility-first CSS framework for rapid UI development
+- **Routing**: React Router DOM 7 - Declarative routing for single-page applications
+
+### Libraries & Tools
+
+- **HTTP Client**: Axios - Promise-based HTTP client with interceptors
+- **State Management**: React Context API - Centralized state for cart, theme, and user data
+- **UI Components**: Lucide React - Beautiful, consistent icon library
+- **Carousel**: Swiper.js - Modern touch-enabled slider
+- **Notifications**: React Toastify - Elegant toast notifications
+- **Development**: ESLint, PostCSS, Autoprefixer
+
+### Image Assets
+
+- **Professional pharmaceutical product images** from Shutterstock, Getty Images, and iStock
+- **Optimized loading** with lazy loading and modern image formats
 
 ## 🔋 Features
 
-👉 **Complete E-commerce Experience**: Browse and purchase medicines, health supplements, and medical supplies with a user-friendly interface designed specifically for healthcare products.
+### � E-commerce Core
 
-👉 **Advanced Product Catalog**: 
-- Smart search and filtering by category, subcategory, and keywords
+**Complete Shopping Experience**
+- Browse authentic pharmaceutical products with professional imagery
+- Advanced search and filtering by category, subcategory, and keywords
 - Product pagination with customizable results per page
 - Featured products and bestsellers showcase
 - Detailed product pages with descriptions, pricing, and availability
+- Real pharmaceutical images from trusted professional stock libraries
 
-👉 **User Authentication & Management**: 
-- Secure user registration and login system
-- Profile management and saved addresses
-- Order history and tracking
-- Guest checkout option for quick purchases
-
-👉 **Flexible Shopping Cart**: 
-- Add/remove items with quantity controls
+**Smart Shopping Cart**
+- Add/remove items with intuitive quantity controls
 - Support for different product packages and pricing tiers
 - Minimum order quantity validation
-- Real-time cart total calculations
+- Real-time cart total calculations with delivery fees
+- Persistent cart across sessions
 
-👉 **Multiple Payment Methods**: 
-- Credit/Debit card payments
-- Razorpay integration for Indian users
-- Stripe integration for international payments
-- PayPal support
-- Cryptocurrency payments (Bitcoin, Ethereum, etc.)
-- Western Union support
-- Manual payment processing
+### � User Management
 
-👉 **Smart Checkout System**: 
-- Guest checkout for non-registered users
-- Saved addresses for registered users
+**Authentication & Profiles**
+- Secure user registration and login system
+- Profile management with saved delivery addresses
+- Order history and real-time tracking
+- Guest checkout option for quick purchases (no registration required)
+- Token-based authentication with secure backend integration
+
+### 💳 Payment Integration
+
+**Multiple Payment Options**
+- **Mobile Money**: M-Pesa integration (coming soon)
+- **Cards**: Credit/Debit card payments via Razorpay
+- **International**: Stripe for global transactions
+- **Digital**: PayPal support
+- **Crypto**: Bitcoin, Ethereum, USDT (TRC20, ERC20)
+- **Traditional**: Western Union and bank transfers
+- **Flexible**: Manual payment processing for alternative methods
+
+**Secure Checkout**
+- Guest checkout for quick purchases
+- Saved payment methods for registered users
 - Separate billing and delivery addresses
-- Coupon code support with discount calculations
-- Order notes and special instructions
+- Coupon code support with automatic discount calculations
+- Order notes and special delivery instructions
 
-👉 **Comprehensive Order Management**: 
-- Real-time order tracking and status updates
-- Order verification for payment processing
+### � Order Management
+
+**Complete Order Tracking**
+- Real-time order status updates
+- Order verification and payment confirmation
 - Detailed order history with payment information
-- Support for various order statuses
+- Email notifications for order updates
+- Support for multiple order statuses (processing, shipped, delivered)
 
-👉 **Blog & Content Management**: 
-- Health and wellness blog section
-- Paginated blog listings
-- Detailed blog post view
-- SEO-friendly blog URLs
+### � Customer Experience
 
-👉 **Customer Support Features**: 
-- Contact form with inquiry management
-- WhatsApp integration for instant support
-- Testimonials and reviews section
-- FAQ and policy pages
-
-👉 **Modern UI/UX**: 
-- Responsive design for all device sizes
-- Dark/light theme toggle with persistence
-- Loading states and skeleton loaders
-- Toast notifications for user feedback
+**Modern UI/UX**
+- Fully responsive design for desktop, tablet, and mobile
+- Beautiful dark/light theme toggle with localStorage persistence
+- Smooth loading states and skeleton loaders
+- Toast notifications for instant user feedback
+- Intuitive navigation with mobile hamburger menu
 - Smooth animations and transitions
 
-👉 **Performance Optimized**: 
+**Customer Support**
+- **WhatsApp Integration**: Direct chat at +254 704883755
+- Contact form with inquiry management
+- Customer testimonials and reviews section
+- Comprehensive FAQ and policy pages
+- Nairobi, Kenya office location
+
+**Content & Resources**
+- Health and wellness blog section
+- Paginated blog listings with featured articles
+- SEO-friendly blog URLs
+- Educational content about medicines and health
+
+### ⚡ Performance & Technical
+
+**Optimized Performance**
+- Lightning-fast page loads with Vite 6
 - Image optimization with lazy loading
-- Component-based architecture
-- Efficient state management with Context API
-- Optimized build with Vite
+- Efficient component-based architecture
+- Smart state management with React Context API
+- Minimal bundle size with tree-shaking
+- Modern ES6+ JavaScript for optimal performance
 
 ## 🏗️ System Architecture
 
@@ -128,89 +171,141 @@ Frontend (React) ↔ Backend API ↔ Database
 
 ## 🚀 Quick Start
 
-Follow these steps to set up the project locally on your machine.
-
 ### Prerequisites
 
-Make sure you have the following installed:
+Ensure you have the following installed:
 
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en) (version 18.x or higher)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- **[Git](https://git-scm.com/)** - Version control
+- **[Node.js](https://nodejs.org/)** - v18.x or higher (LTS recommended)
+- **[npm](https://www.npmjs.com/)** or **[yarn](https://yarnpkg.com/)** - Package manager
 
-### Cloning the Repository
+### Installation Steps
+
+#### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Sanskargupta0/YMGS-Frontend.git
-cd YMGS-Frontend
+git clone https://github.com/your-username/tibu-pharmacy-frontend.git
+cd tibu-pharmacy-frontend
 ```
 
-### Installation
+#### 2. Install Dependencies
 
-Install dependencies using npm:
-
+Using npm:
 ```bash
 npm install
 ```
 
-or using yarn:
-
+Or using yarn:
 ```bash
 yarn install
 ```
 
-### Environment Setup
+#### 3. Set Up Backend Server
 
-1. Create a `.env` file in the root directory by copying from `.env.example`:
+The application includes a mock backend for development:
 
 ```bash
-cp .env.example .env
+cd backend
+npm install
+node src/server.js
 ```
 
-2. Fill in all the required environment variables in your `.env` file. See the [Environment Variables](#environment-variables) section below for detailed instructions.
+The backend will start on `http://127.0.0.1:4000`
 
-### Required Backend Setup
+#### 4. Configure Environment Variables
 
-Before running the frontend, ensure you have the backend services running:
+Create a `.env` file in the root directory:
 
-1. **Set up the [YMGS Backend](https://github.com/Sanskargupta0/YMGS-Backend)**:
-   - Clone and set up the backend repository
-   - Configure the database and environment variables
-   - Start the backend server (typically runs on port 4000)
+```env
+VITE_BACKEND_URL=http://127.0.0.1:4000
+VITE_RAZORPAY_KEY_ID=your_razorpay_key_id
+```
 
-2. **Set up the [YMGS Admin Panel](https://github.com/Sanskargupta0/YMGS-Admin)** (optional for basic functionality):
-   - Clone and set up the admin panel repository
-   - Use it to manage products, orders, and content
+#### 5. Start Development Server
 
-### Running the Application
-
-1. **Start the development server**:
+In a new terminal (keep backend running):
 
 ```bash
 npm run dev
 ```
 
-2. Open your browser and navigate to `http://localhost:5173`
+The application will open at `http://localhost:5173`
 
-The frontend will automatically connect to your backend API using the `VITE_BACKEND_URL` environment variable.
+### 🎯 Quick Test
+
+Once running, you can:
+
+1. Browse the product catalog on the homepage
+2. Search for specific pharmaceutical products
+3. Add items to cart and proceed to checkout
+4. Test guest checkout or create an account
+5. Toggle between dark/light themes
+6. Contact support via WhatsApp integration
+
+### 🛠️ Development Commands
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server (frontend)
+npm run dev
+
+# Start backend server
+cd backend && node src/server.js
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Run linter
+npm run lint
+
+# Update browser compatibility data
+npx update-browserslist-db@latest
+```
 
 ## 🔐 Environment Variables
 
-Create a `.env` file in the root directory with the following variables:
+Create a `.env` file in the root directory:
 
-### Backend Integration
-- `VITE_BACKEND_URL`: URL of your YMGS backend server (e.g., `http://localhost:4000` for local development)
-
-### Payment Integration
-- `VITE_RAZORPAY_KEY_ID`: Your Razorpay key ID for Indian payment processing
-
-### Example `.env` file:
 ```env
-VITE_BACKEND_URL=http://localhost:4000
+# Backend API URL
+VITE_BACKEND_URL=http://127.0.0.1:4000
+
+# Payment Gateway (Razorpay)
 VITE_RAZORPAY_KEY_ID=rzp_test_xxxxxxxxx
 ```
 
-**Note**: The backend handles most configuration including Stripe keys, database connections, and other sensitive information. The frontend only needs the backend URL and Razorpay public key.
+### Variable Descriptions
+
+| Variable | Description | Required | Default |
+|----------|-------------|----------|----------|
+| `VITE_BACKEND_URL` | Backend API server URL | Yes | `http://127.0.0.1:4000` |
+| `VITE_RAZORPAY_KEY_ID` | Razorpay public key for payments | No | - |
+
+### Environment-Specific Configuration
+
+**Development:**
+```env
+VITE_BACKEND_URL=http://127.0.0.1:4000
+VITE_RAZORPAY_KEY_ID=rzp_test_xxxxxxxxx
+```
+
+**Production:**
+```env
+VITE_BACKEND_URL=https://api.tibupharmacy.com
+VITE_RAZORPAY_KEY_ID=rzp_live_xxxxxxxxx
+```
+
+### Security Notes
+
+- Never commit `.env` files to version control
+- Use different keys for development and production
+- Keep Razorpay keys secure and rotate regularly
+- The backend handles sensitive configuration (database, payment secrets, etc.)
 
 ## 🎯 Usage Guide
 
@@ -247,35 +342,60 @@ You can test the application using these demo credentials:
 ## 🏗️ Project Structure
 
 ```
-YMGS-Frontend/
+tibu-pharmacy-frontend/
+├── backend/                      # Mock backend server
+│   └── src/
+│       ├── server.js            # Express API server
+│       └── data.js              # Product data with real pharmaceutical images
 ├── public/                       # Static assets
 │   └── vite.svg                 # Favicon
+├── screenshots/                  # Application screenshots
+│   ├── home-page.png
+│   ├── products-collection.png
+│   ├── product-detail.png
+│   ├── shopping-cart.png
+│   ├── checkout-page.png
+│   ├── guest-checkout.png
+│   ├── order-management.png
+│   ├── blog-section.png
+│   ├── contact-page.png
+│   ├── about-us.png
+│   ├── dark-theme.png
+│   └── mobile-view.png
 ├── src/                         # Source code
 │   ├── assets/                  # Images and static files
 │   │   ├── assets.js           # Asset exports
-│   │   └── *.png,*.jpg         # Image files
+│   │   ├── logo.png            # Tibu Pharmacy logo
+│   │   ├── cart_icon.png       # UI icons
+│   │   └── *.png,*.jpg         # Various UI assets
 │   ├── components/              # Reusable UI components
 │   │   ├── BestSeller.jsx      # Featured products section
 │   │   ├── CartTotal.jsx       # Cart summary component
 │   │   ├── Feature.jsx         # Features showcase
-│   │   ├── Footer.jsx          # Site footer
+│   │   ├── Footer.jsx          # Site footer with Tibu branding
 │   │   ├── Hero.jsx            # Homepage hero section
 │   │   ├── Navbar.jsx          # Navigation bar
+│   │   ├── NewsLetterBox.jsx   # Newsletter subscription
 │   │   ├── ProductItem.jsx     # Product card component
+│   │   ├── RelatedProducts.jsx # Related products suggestions
+│   │   ├── ScrollToTop.jsx     # Scroll to top button
 │   │   ├── SearchBar.jsx       # Search functionality
-│   │   ├── ThemeSwitcher.jsx   # Dark/light theme toggle
 │   │   ├── Testimonials.jsx    # Customer reviews
-│   │   └── WhatsAppButton.jsx  # WhatsApp integration
+│   │   ├── ThemeSwitcher.jsx   # Dark/light theme toggle
+│   │   ├── Title.jsx           # Section title component
+│   │   └── WhatsAppButton.jsx  # WhatsApp integration (+254 704883755)
 │   ├── context/                 # React Context providers
 │   │   ├── ShopContext.jsx     # Main app state management
 │   │   └── ThemeContext.jsx    # Theme state management
+│   ├── lib/                     # Utility libraries
+│   │   └── apiClient.js        # Axios instance with interceptors
 │   ├── pages/                   # Main application pages
-│   │   ├── About.jsx           # About us page
+│   │   ├── About.jsx           # About Tibu Pharmacy
 │   │   ├── BlogDetail.jsx      # Individual blog post
 │   │   ├── Blogs.jsx           # Blog listing page
 │   │   ├── Cart.jsx            # Shopping cart page
 │   │   ├── Collection.jsx      # Products listing page
-│   │   ├── Contact.jsx         # Contact form page
+│   │   ├── Contact.jsx         # Contact form (Nairobi, Kenya)
 │   │   ├── GuestCheckout.jsx   # Guest checkout process
 │   │   ├── Home.jsx            # Homepage
 │   │   ├── Login.jsx           # User authentication
@@ -287,13 +407,25 @@ YMGS-Frontend/
 │   ├── App.jsx                  # Main application component
 │   ├── main.jsx                # Application entry point
 │   └── index.css               # Global styles
+├── .env                         # Environment variables (not in git)
+├── .gitignore                   # Git ignore rules
 ├── eslint.config.js             # ESLint configuration
+├── index.html                   # HTML entry point
 ├── package.json                 # Dependencies and scripts
 ├── postcss.config.js           # PostCSS configuration
+├── README.md                    # This file
 ├── tailwind.config.js          # Tailwind CSS configuration
 ├── vercel.json                 # Vercel deployment config
 └── vite.config.js              # Vite build configuration
 ```
+
+### Key Files
+
+- **`src/context/ShopContext.jsx`**: Central state management for products, cart, and orders
+- **`src/lib/apiClient.js`**: Configured Axios instance for API calls
+- **`backend/src/server.js`**: Mock Express server with pharmaceutical product data
+- **`backend/src/data.js`**: Product database with 30 real pharmaceutical images
+- **`src/components/WhatsAppButton.jsx`**: Direct WhatsApp integration for customer support
 
 ## 🔄 Development Commands
 
@@ -316,26 +448,50 @@ npm run lint
 
 ## 🌐 Deployment
 
-### Vercel (Recommended)
+### Vercel Deployment (Recommended)
 
-1. **Connect Repository**: Link your GitHub repository to Vercel
-2. **Environment Variables**: Add your environment variables in Vercel dashboard
-3. **Deploy**: Vercel will automatically deploy on every push to main branch
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+
+1. **Push to GitHub**: Ensure your code is in a GitHub repository
+2. **Import to Vercel**: Connect your repository to Vercel
+3. **Configure Environment Variables**:
+   - Add `VITE_BACKEND_URL` (your production backend URL)
+   - Add `VITE_RAZORPAY_KEY_ID` (your production Razorpay key)
+4. **Deploy**: Vercel automatically builds and deploys your application
+5. **Auto-Deploy**: Future commits to main branch trigger automatic deployments
 
 ### Manual Deployment
 
-1. **Build the application**:
-```bash
-npm run build
-```
+Build and deploy to any static hosting service:
 
-2. **Deploy the `dist` folder** to your hosting provider
+```bash
+# Build for production
+npm run build
+
+# The dist/ folder contains your production-ready application
+# Upload it to your hosting provider
+```
 
 ### Environment Variables for Production
 
-Make sure to set the following in your production environment:
-- `VITE_BACKEND_URL`: Your production backend URL
-- `VITE_RAZORPAY_KEY_ID`: Your production Razorpay key
+Ensure these are set in your deployment platform:
+
+| Variable | Example | Required |
+|----------|---------|----------|
+| `VITE_BACKEND_URL` | `https://api.tibupharmacy.com` | Yes |
+| `VITE_RAZORPAY_KEY_ID` | `rzp_live_xxxxxxxxx` | No |
+
+### Deployment Checklist
+
+- [ ] Set production environment variables
+- [ ] Update backend URL to production API
+- [ ] Use production Razorpay keys (not test keys)
+- [ ] Enable HTTPS/SSL certificate
+- [ ] Configure CORS on backend for production domain
+- [ ] Test payment integration in production
+- [ ] Verify WhatsApp integration works
+- [ ] Test mobile responsiveness
+- [ ] Run lighthouse audit for performance
 
 ## 🔒 Security Features
 
@@ -448,35 +604,147 @@ The application is fully responsive and optimized for:
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+We welcome contributions from the community! Whether it's bug fixes, new features, or documentation improvements.
 
-### Development Workflow
+### How to Contribute
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. **Fork the Repository**
+   ```bash
+   git clone https://github.com/your-username/tibu-pharmacy-frontend.git
+   ```
 
-## 📞 Support
+2. **Create a Feature Branch**
+   ```bash
+   git checkout -b feature/your-amazing-feature
+   ```
 
-If you encounter any issues or have questions:
+3. **Make Your Changes**
+   - Write clean, readable code
+   - Follow existing code style and conventions
+   - Add comments for complex logic
+   - Test your changes thoroughly
 
-1. Check the troubleshooting section above
-2. Review the [backend repository](https://github.com/Sanskargupta0/YMGS-Backend) for API-related issues
-3. Check the [admin panel repository](https://github.com/Sanskargupta0/YMGS-Admin) for management-related questions
-4. Open an issue on GitHub
+4. **Commit Your Changes**
+   ```bash
+   git add .
+   git commit -m "Add: Brief description of your feature"
+   ```
+
+5. **Push to Your Fork**
+   ```bash
+   git push origin feature/your-amazing-feature
+   ```
+
+6. **Open a Pull Request**
+   - Provide a clear description of changes
+   - Link any related issues
+   - Wait for code review
+
+### Contribution Guidelines
+
+- **Code Style**: Follow the existing ESLint configuration
+- **Commits**: Use clear, descriptive commit messages
+- **Testing**: Test your changes in both light and dark themes
+- **Documentation**: Update README if you add new features
+- **Responsive**: Ensure changes work on mobile, tablet, and desktop
+
+### Areas for Contribution
+
+- 🐛 Bug fixes and error handling improvements
+- ✨ New features and enhancements
+- 📱 Mobile UX improvements
+- 🎨 UI/UX refinements
+- 📚 Documentation improvements
+- 🌍 Localization and translations
+- ⚡ Performance optimizations
+- ♿ Accessibility improvements
+
+## 📞 Support & Contact
+
+### Customer Support
+
+- **WhatsApp**: [+254 704883755](https://wa.me/254704883755)
+- **Email**: info@tibupharmacy.com
+- **Location**: Nairobi, Kenya
+
+### Technical Support
+
+If you encounter technical issues:
+
+1. Check the [Troubleshooting](#-troubleshooting) section
+2. Search existing GitHub issues
+3. Create a new issue with:
+   - Clear description of the problem
+   - Steps to reproduce
+   - Expected vs actual behavior
+   - Screenshots (if applicable)
+   - Browser and OS information
+
+### Business Inquiries
+
+For partnerships, wholesale orders, or business opportunities:
+- Email: info@tibupharmacy.com
+- Phone: +254 704883755
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the **MIT License**.
 
-## 🔗 Related Repositories
+```
+MIT License
 
-- **[YMGS Backend](https://github.com/Sanskargupta0/YMGS-Backend)**: Main API server and business logic
-- **[YMGS Admin Panel](https://github.com/Sanskargupta0/YMGS-Admin)**: Administrative interface for managing the platform
+Copyright (c) 2025 Tibu Pharmacy
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## 🙏 Acknowledgments
+
+- **React Team**: For the amazing React library
+- **Vite Team**: For the blazing-fast build tool
+- **Tailwind CSS**: For the utility-first CSS framework
+- **Professional Stock Photo Libraries**: Shutterstock, Getty Images, iStock for pharmaceutical product imagery
+- **Open Source Community**: For the incredible tools and libraries
+
+## 📊 Project Status
+
+- ✅ **Active Development**: Regularly updated and maintained
+- ✅ **Production Ready**: Stable and tested for production use
+- 🚀 **Future Plans**: M-Pesa integration, mobile app, advanced analytics
+
+## 🔗 Related Resources
+
+- [React Documentation](https://react.dev/)
+- [Vite Documentation](https://vitejs.dev/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/)
+- [React Router Documentation](https://reactrouter.com/)
 
 ---
 
-Built with ❤️ by [Sanskar Gupta](https://www.linkedin.com/in/sanskar-gupta-12476423b/)
-"# Tibu" 
+<div align="center">
+
+### 💊 Tibu Pharmacy - Your Health, Our Priority
+
+**Made with ❤️ in Kenya 🇰🇪**
+
+[Website](https://tibupharmacy.com) • [WhatsApp](https://wa.me/254704883755) • [Email](mailto:info@tibupharmacy.com)
+
+⭐ Star this repo if you find it useful!
+
+</div> 

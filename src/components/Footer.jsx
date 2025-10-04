@@ -4,8 +4,8 @@ import axios from 'axios';
 
 const Footer = () => {
   const [contactInfo, setContactInfo] = useState({
-    footerEmail: 'ymgspharmacy@gmail.com',
-    footerPhone: '+91 8858284423'
+    footerEmail: 'info@tibupharmacy.com',
+    footerPhone: '+254 704883755'
   });
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +34,7 @@ const Footer = () => {
       <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 mb-10 text-small">
         <div>
           <Link to="/" className="font-display text-2xl text-primary dark:text-[#02ADEE]">
-            YMGS Pharmacy
+            Tibu Pharmacy
           </Link>
           <p className="w-full md:w-2/3 text-gray-600 dark:text-gray-300 mt-2">
             Your Trusted Online Medicine & Healthcare Partner
@@ -76,7 +76,7 @@ const Footer = () => {
       <div>
         <hr className="border-gray-300 dark:border-gray-700" />
         <p className="py-5 text-sm text-center text-gray-600 dark:text-gray-300">
-          YMGS Pharmacy CopyRight 2025 All-Rights Reserved.
+          Tibu Pharmacy Copyright 2025 All Rights Reserved.
         </p>
       </div>
     </div>

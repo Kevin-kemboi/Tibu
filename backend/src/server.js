@@ -7,9 +7,29 @@ import { products, carts } from './data.js';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+// Configurable CORS - allow all origins for development
+app.use(cors({
+  origin: true, // Allow all origins for now
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'token']
+}));
+
 app.use(express.json());
 app.use(morgan('dev'));
+
+// Lightweight request logger (path + method + timing) for easier debugging
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    const ms = Date.now() - start;
+    console.log(`[REQ] ${req.method} ${req.originalUrl} -> ${res.statusCode} (${ms}ms)`);
+  });
+  next();
+});
+
+const API_VERSION = '1.0.0';
 
 const PORT = process.env.PORT || 4000;
 
@@ -108,8 +128,8 @@ app.get('/api/order/settings', (req, res) => {
   res.json({
     success: true,
     settings: {
-      footerEmail: 'ymgspharmacy@gmail.com',
-      footerPhone: '+91 8858284423'
+      footerEmail: 'info@tibupharmacy.com',
+      footerPhone: '+254 704883755'
     }
   });
 });
@@ -148,7 +168,7 @@ app.get('/api/order/crypto-wallets', (req, res) => {
       qrCodeImage: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0xSampleEthereumAddressABCDEF'
     }
   ];
-  res.json({ success: true, wallets });
+  res.json({ success: true, wallets, fetchedAt: new Date().toISOString() });
 });
 
 // Guest order placement mock
@@ -175,8 +195,31 @@ app.post('/api/contact', (req, res) => {
   res.json({ success: true, message: 'Message received' });
 });
 
-app.get('/', (_, res) => res.send('Mock YMGS Backend Running'));
+// Health + root endpoints
+app.get('/health', (_, res) => res.json({ status: 'ok', time: new Date().toISOString(), version: API_VERSION }));
+app.get('/', (_, res) => res.json({ message: 'Mock Tibu Pharmacy Backend Running', version: API_VERSION, docs: '/health' }));
 
-app.listen(PORT, () => {
-  console.log(`Mock backend listening on http://localhost:${PORT}`);
+// 404 handler for API routes
+app.use('/api', (req, res, next) => {
+  if (res.headersSent) return next();
+  res.status(404).json({ success: false, message: 'API route not found' });
+});
+
+// Central error handler
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  console.error('[ERROR]', err.message);
+  if (process.env.NODE_ENV !== 'production') {
+    console.error(err.stack);
+  }
+  res.status(500).json({ success: false, message: 'Internal server error' });
+});
+
+app.listen(PORT, '127.0.0.1', () => {
+  console.log(`\n──────────────────────────────────────────────`);
+  console.log(` Mock backend listening on http://127.0.0.1:${PORT}`);
+  console.log(` Version: ${API_VERSION}`);
+  console.log(` Crypto wallets endpoint: GET /api/order/crypto-wallets`);
+  console.log(` Health: GET /health`);
+  console.log(`──────────────────────────────────────────────\n`);
 });

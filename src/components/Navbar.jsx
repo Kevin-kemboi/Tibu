@@ -15,10 +15,10 @@ const NavBar = () => {
     }
 
     return (
-        <div className='flex items-center justify-between py-4 px-3 sm:px-5 font-medium bg-[#7ccfff] dark:bg-gray-900 shadow-md fixed top-0 left-0 right-0 z-50 transition-colors'>
-            <Link to="/" className="font-display text-primary dark:text-[#02ADEE]">
+        <div className='flex items-center justify-between py-4 px-3 sm:px-5 font-medium bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-soft border-b border-gray-100 dark:border-gray-800 fixed top-0 left-0 right-0 z-50 transition-all duration-200'>
+            <Link to="/" className="font-roboto font-semibold text-primary-600 dark:text-primary-400">
                 <div className="flex items-center gap-1 sm:gap-2">
-                <span className="text-base sm:text-xl md:text-2xl whitespace-nowrap">YMGS Pharmacy</span>
+                <span className="text-base sm:text-xl md:text-2xl whitespace-nowrap">Tibu Pharmacy</span>
                 </div>
             </Link>
 

@@ -15,9 +15,9 @@ const Contact = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [contactInfo, setContactInfo] = useState({
-    contactEmail: 'ymgspharmacy@gmail.com',
-    contactPhone: '+91 8858284423',
-    contactAddress: '123 Fresh Market Lane, Garden District, Green City 12345',
+    contactEmail: 'info@tibupharmacy.com',
+    contactPhone: '+254 704883755',
+    contactAddress: '123 Pharmacy Plaza, Healthcare District, Nairobi 00100',
     businessHours: 'Mon - Sat: 8:00 AM - 8:00 PM\nSunday: 9:00 AM - 6:00 PM'
   })
   const [loading, setLoading] = useState(true)

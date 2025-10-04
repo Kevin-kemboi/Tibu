@@ -14,7 +14,7 @@ const Testimonials = () => {
       role: "Regular Customer",
       image: "https://randomuser.me/api/portraits/women/32.jpg",
       stars: 5,
-      text: "YMGS Pharmacy has been a lifesaver for me. Their quick delivery and genuine medicines have made managing my health so much easier. The online ordering process is seamless!"
+      text: "Tibu Pharmacy has been a lifesaver for me. Their quick delivery and genuine medicines have made managing my health so much easier. The online ordering process is seamless!"
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ const Testimonials = () => {
       role: "Monthly Subscriber",
       image: "https://randomuser.me/api/portraits/men/45.jpg",
       stars: 5,
-      text: "I appreciate the consistency and reliability of YMGS Pharmacy. Their subscription service ensures I never run out of my regular medications, and their customer support is excellent."
+      text: "I appreciate the consistency and reliability of Tibu Pharmacy. Their subscription service ensures I never run out of my regular medications, and their customer support is excellent."
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ const Testimonials = () => {
       role: "Healthcare Professional",
       image: "https://randomuser.me/api/portraits/women/68.jpg",
       stars: 4,
-      text: "As a healthcare worker, I'm particular about medicine quality. YMGS consistently delivers authentic products and their service is prompt and professional. Highly recommended!"
+      text: "As a healthcare worker, I'm particular about medicine quality. Tibu Pharmacy consistently delivers authentic products and their service is prompt and professional. Highly recommended!"
     },
     {
       id: 4,
@@ -38,7 +38,7 @@ const Testimonials = () => {
       role: "First-time Customer",
       image: "https://randomuser.me/api/portraits/men/22.jpg",
       stars: 5,
-      text: "I was skeptical about ordering medicines online, but YMGS Pharmacy exceeded my expectations. The medications arrived on time and were exactly what I needed. Will definitely use again!"
+      text: "I was skeptical about ordering medicines online, but Tibu Pharmacy exceeded my expectations. The medications arrived on time and were exactly what I needed. Will definitely use again!"
     },
     {
       id: 5,
@@ -46,7 +46,7 @@ const Testimonials = () => {
       role: "Senior Citizen",
       image: "https://randomuser.me/api/portraits/women/56.jpg",
       stars: 5,
-      text: "The home delivery service from YMGS Pharmacy is a blessing for seniors like me. The delivery staff is courteous, and the medicine packages are sealed properly. Very satisfied!"
+      text: "The home delivery service from Tibu Pharmacy is a blessing for seniors like me. The delivery staff is courteous, and the medicine packages are sealed properly. Very satisfied!"
     }
   ];
 
@@ -61,7 +61,7 @@ const Testimonials = () => {
             What Our Customers Say
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-            Read testimonials from our satisfied customers who trust YMGS Pharmacy for their healthcare needs.
+            Read testimonials from our satisfied customers who trust Tibu Pharmacy for their healthcare needs.
           </p>
         </div>
         
