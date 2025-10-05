@@ -1,12 +1,14 @@
 // Centralized Axios instance with fallback base URL and helpers
 import axios from 'axios';
 
-// Attempt to read from Vite env, fallback to 127.0.0.1 to match backend
-const baseURL = import.meta?.env?.VITE_BACKEND_URL || window.__BACKEND_URL__ || 'http://127.0.0.1:4000';
+// Attempt to read from Vite env, fallback to Render backend URL
+const baseURL = import.meta?.env?.VITE_BACKEND_URL || 'https://tibu-backend.onrender.com';
+
+console.log('🔗 API Base URL:', baseURL);
 
 const api = axios.create({
   baseURL,
-  timeout: 10000,
+  timeout: 30000, // Increased timeout for Render cold starts
   headers: {
     'Content-Type': 'application/json'
   }
