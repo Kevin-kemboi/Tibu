@@ -45,8 +45,10 @@ function paginate(items, page = 1, limit = 20) {
   return { data: sliced, pagination: { total, pages, currentPage, limit } };
 }
 
-// 🛍 Products
+// 🛍 Products - Get all products with filters
 app.post('/api/product/user/list', (req, res) => {
+  console.log('[API] POST /api/product/user/list', req.body);
+  
   const {
     page = 1,
     limit = 20,
@@ -82,7 +84,18 @@ app.post('/api/product/user/list', (req, res) => {
   if (sortOrder === 'desc') filtered.reverse();
 
   const { data, pagination } = paginate(filtered, page, limit);
+  
+  console.log(`[API] Returning ${data.length} products (Total: ${pagination.total})`);
   res.json({ success: true, products: data, pagination });
+});
+
+// 🏆 Get bestseller products
+app.get('/api/product/bestsellers', (req, res) => {
+  const bestsellers = products.filter(p => p.bestseller).slice(0, 10);
+  res.json({
+    success: true,
+    products: bestsellers
+  });
 });
 
 // GET /api/product/:id
@@ -127,11 +140,18 @@ app.post('/api/cart/update', (req, res) => {
 
 // 📦 Order settings
 app.get('/api/order/settings', (req, res) => {
+  console.log('[API] GET /api/order/settings');
   res.json({
     success: true,
     settings: {
       footerEmail: 'info@tibupharmacy.com',
       footerPhone: '+254 704883755',
+      address: '123 Pharmacy Plaza, Healthcare District, Nairobi 00100',
+      city: 'Nairobi',
+      country: 'Kenya',
+      currency: 'KES',
+      deliveryFee: 150,
+      minOrderAmount: 500
     },
   });
 });
@@ -149,6 +169,7 @@ app.post('/api/order/verify-coupon', (req, res) => {
 
 // 🪙 Crypto wallets mock
 app.get('/api/order/crypto-wallets', (req, res) => {
+  console.log('[API] GET /api/order/crypto-wallets');
   const wallets = [
     {
       cryptoType: 'USDT',
@@ -219,9 +240,20 @@ app.use((err, req, res, next) => {
 // ✅ FIXED HOST BINDING HERE
 app.listen(PORT, HOST, () => {
   console.log(`\n──────────────────────────────────────────────`);
-  console.log(` Mock backend listening on http://${HOST}:${PORT}`);
-  console.log(` Version: ${API_VERSION}`);
-  console.log(` Crypto wallets endpoint: GET /api/order/crypto-wallets`);
-  console.log(` Health: GET /health`);
+  console.log(` 🏥 Tibu Pharmacy Backend API`);
+  console.log(` 🚀 Server: http://${HOST}:${PORT}`);
+  console.log(` 🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(` 📦 Products loaded: ${products.length}`);
+  console.log(` 📡 Version: ${API_VERSION}`);
+  console.log(`\n 📋 API Endpoints:`);
+  console.log(`    GET  /health`);
+  console.log(`    POST /api/product/user/list`);
+  console.log(`    GET  /api/product/bestsellers`);
+  console.log(`    GET  /api/product/:id`);
+  console.log(`    GET  /api/order/settings`);
+  console.log(`    GET  /api/order/crypto-wallets`);
+  console.log(`    POST /api/cart/get`);
+  console.log(`    POST /api/cart/add`);
+  console.log(`    POST /api/cart/update`);
   console.log(`──────────────────────────────────────────────\n`);
 });
