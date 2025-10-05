@@ -8,18 +8,20 @@ dotenv.config();
 
 const app = express();
 
-// Configurable CORS - allow all origins for development
-app.use(cors({
-  origin: true, // Allow all origins for now
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'token']
-}));
+// CORS setup
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'token'],
+  })
+);
 
 app.use(express.json());
 app.use(morgan('dev'));
 
-// Lightweight request logger (path + method + timing) for easier debugging
+// Custom logger
 app.use((req, res, next) => {
   const start = Date.now();
   res.on('finish', () => {
@@ -31,6 +33,7 @@ app.use((req, res, next) => {
 
 const API_VERSION = '1.0.0';
 const PORT = process.env.PORT || 4000;
+const HOST = '0.0.0.0'; // ✅ Important for Render
 
 // Helper: paginate array
 function paginate(items, page = 1, limit = 20) {
@@ -42,37 +45,38 @@ function paginate(items, page = 1, limit = 20) {
   return { data: sliced, pagination: { total, pages, currentPage, limit } };
 }
 
-// POST /api/product/user/list
+// 🛍 Products
 app.post('/api/product/user/list', (req, res) => {
-  const { page = 1, limit = 20, category = [], subCategory = [], search = '', sortBy = 'date', sortOrder = 'desc', bestseller, excludeId } = req.body || {};
+  const {
+    page = 1,
+    limit = 20,
+    category = [],
+    subCategory = [],
+    search = '',
+    sortBy = 'date',
+    sortOrder = 'desc',
+    bestseller,
+    excludeId,
+  } = req.body || {};
 
   let filtered = [...products];
 
-  if (bestseller) {
-    filtered = filtered.filter(p => p.bestseller);
-  }
-
-  if (excludeId) {
-    filtered = filtered.filter(p => p._id !== excludeId);
-  }
-
-  if (Array.isArray(category) && category.length) {
-    filtered = filtered.filter(p => category.includes(p.category));
-  }
-
-  if (Array.isArray(subCategory) && subCategory.length) {
-    filtered = filtered.filter(p => subCategory.includes(p.subCategory));
-  }
-
+  if (bestseller) filtered = filtered.filter((p) => p.bestseller);
+  if (excludeId) filtered = filtered.filter((p) => p._id !== excludeId);
+  if (Array.isArray(category) && category.length)
+    filtered = filtered.filter((p) => category.includes(p.category));
+  if (Array.isArray(subCategory) && subCategory.length)
+    filtered = filtered.filter((p) => subCategory.includes(p.subCategory));
   if (search) {
     const term = search.toLowerCase();
-    filtered = filtered.filter(p => p.name.toLowerCase().includes(term) || p.description.toLowerCase().includes(term));
+    filtered = filtered.filter(
+      (p) => p.name.toLowerCase().includes(term) || p.description.toLowerCase().includes(term)
+    );
   }
 
-  // Sorting
   if (sortBy === 'price') {
     filtered.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-  } else { // date
+  } else {
     filtered.sort((a, b) => a.createdAt - b.createdAt);
   }
   if (sortOrder === 'desc') filtered.reverse();
@@ -83,13 +87,12 @@ app.post('/api/product/user/list', (req, res) => {
 
 // GET /api/product/:id
 app.get('/api/product/:id', (req, res) => {
-  const product = products.find(p => p._id === req.params.id);
+  const product = products.find((p) => p._id === req.params.id);
   if (!product) return res.status(404).json({ success: false, message: 'Product not found' });
   res.json({ success: true, product });
 });
 
-// CART ROUTES
-// Expect header: token (string). We'll just trust any token.
+// 🛒 CART
 app.post('/api/cart/get', (req, res) => {
   const token = req.headers.token || 'guest';
   const cartData = carts.get(token) || {};
@@ -99,7 +102,8 @@ app.post('/api/cart/get', (req, res) => {
 app.post('/api/cart/add', (req, res) => {
   const token = req.headers.token || 'guest';
   const { itemId, cartData } = req.body;
-  if (!itemId || !cartData) return res.status(400).json({ success: false, message: 'Missing itemId or cartData' });
+  if (!itemId || !cartData)
+    return res.status(400).json({ success: false, message: 'Missing itemId or cartData' });
   const existing = carts.get(token) || {};
   existing[itemId] = cartData;
   carts.set(token, existing);
@@ -109,7 +113,8 @@ app.post('/api/cart/add', (req, res) => {
 app.post('/api/cart/update', (req, res) => {
   const token = req.headers.token || 'guest';
   const { itemId, cartData } = req.body;
-  if (!itemId || cartData === undefined) return res.status(400).json({ success: false, message: 'Missing itemId or cartData' });
+  if (!itemId || cartData === undefined)
+    return res.status(400).json({ success: false, message: 'Missing itemId or cartData' });
   const existing = carts.get(token) || {};
   if (!cartData.quantity || cartData.quantity === 0) {
     delete existing[itemId];
@@ -120,100 +125,101 @@ app.post('/api/cart/update', (req, res) => {
   res.json({ success: true, message: 'Cart updated', cartData: existing });
 });
 
-// Order settings (contact info / footer)
+// 📦 Order settings
 app.get('/api/order/settings', (req, res) => {
   res.json({
     success: true,
     settings: {
       footerEmail: 'info@tibupharmacy.com',
-      footerPhone: '+254 704883755'
-    }
+      footerPhone: '+254 704883755',
+    },
   });
 });
 
-// Coupon verification mock
+// 💰 Coupon verification
 app.post('/api/order/verify-coupon', (req, res) => {
   const { couponCode, amount } = req.body || {};
   if (!couponCode) return res.json({ success: false, message: 'Coupon code required' });
   if (couponCode.toUpperCase() === 'SUMMER2025') {
-    if (amount < 50) return res.json({ success: false, message: 'Minimum order amount for this coupon is 50' });
+    if (amount < 50) return res.json({ success: false, message: 'Minimum order amount is 50' });
     return res.json({ success: true, couponDetails: { code: couponCode, discount: 15 } });
   }
   return res.json({ success: false, message: 'Invalid coupon code' });
 });
 
-// Crypto wallets mock
+// 🪙 Crypto wallets mock
 app.get('/api/order/crypto-wallets', (req, res) => {
   const wallets = [
     {
       cryptoType: 'USDT',
       network: 'TRC20',
       walletAddress: 'TPMockWalletAddress123456789',
-      qrCodeImage: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TPMockWalletAddress123456789'
+      qrCodeImage:
+        'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TPMockWalletAddress123456789',
     },
     {
       cryptoType: 'BTC',
       network: 'Bitcoin',
       walletAddress: 'bc1qsamplebitcoinaddressxyz',
-      qrCodeImage: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bc1qsamplebitcoinaddressxyz'
+      qrCodeImage:
+        'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bc1qsamplebitcoinaddressxyz',
     },
     {
       cryptoType: 'ETH',
       network: 'ERC20',
       walletAddress: '0xSampleEthereumAddressABCDEF',
-      qrCodeImage: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0xSampleEthereumAddressABCDEF'
-    }
+      qrCodeImage:
+        'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0xSampleEthereumAddressABCDEF',
+    },
   ];
   res.json({ success: true, wallets, fetchedAt: new Date().toISOString() });
 });
 
-// Guest order placement mock
+// 🧾 Guest order
 app.post('/api/order/guest', (req, res) => {
   const { items, amount } = req.body || {};
-  if (!items || !Array.isArray(items) || items.length === 0) {
-    return res.status(400).json({ success: false, message: 'No items in order' });
-  }
-  if (!amount || amount <= 0) {
+  if (!items?.length) return res.status(400).json({ success: false, message: 'No items in order' });
+  if (!amount || amount <= 0)
     return res.status(400).json({ success: false, message: 'Invalid amount' });
-  }
+
   const orderId = 'ORD-' + Math.random().toString(36).substring(2, 10).toUpperCase();
   res.json({ success: true, orderId, message: 'Guest order accepted (mock).' });
 });
 
-// Minimal blog endpoints (placeholder)
-app.get('/api/blog/list', (req, res) => {
-  res.json({ success: true, blogs: [], pagination: { total: 0, pages: 0, currentPage: 1, limit: 10 } });
-});
+// 📰 Blog + Contact
+app.get('/api/blog/list', (req, res) =>
+  res.json({ success: true, blogs: [], pagination: { total: 0, pages: 0, currentPage: 1, limit: 10 } })
+);
 
-// Contact route placeholder
-app.post('/api/contact', (req, res) => {
-  res.json({ success: true, message: 'Message received' });
-});
+app.post('/api/contact', (req, res) => res.json({ success: true, message: 'Message received' }));
 
-// Health + root endpoints
-app.get('/health', (_, res) => res.json({ status: 'ok', time: new Date().toISOString(), version: API_VERSION }));
-app.get('/', (_, res) => res.json({ message: 'Mock Tibu Pharmacy Backend Running', version: API_VERSION, docs: '/health' }));
+// 🩺 Health + root
+app.get('/health', (_, res) =>
+  res.json({ status: 'ok', time: new Date().toISOString(), version: API_VERSION })
+);
+app.get('/', (_, res) =>
+  res.json({
+    message: 'Mock Tibu Pharmacy Backend Running',
+    version: API_VERSION,
+    docs: '/health',
+  })
+);
 
-// 404 handler for API routes
-app.use('/api', (req, res, next) => {
-  if (res.headersSent) return next();
+// 404 + Error handlers
+app.use('/api', (req, res) => {
   res.status(404).json({ success: false, message: 'API route not found' });
 });
 
-// Central error handler
-// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   console.error('[ERROR]', err.message);
-  if (process.env.NODE_ENV !== 'production') {
-    console.error(err.stack);
-  }
+  if (process.env.NODE_ENV !== 'production') console.error(err.stack);
   res.status(500).json({ success: false, message: 'Internal server error' });
 });
 
-// ✅ FIXED: Listen on 0.0.0.0 instead of 127.0.0.1 for Render compatibility
-app.listen(PORT, '0.0.0.0', () => {
+// ✅ FIXED HOST BINDING HERE
+app.listen(PORT, HOST, () => {
   console.log(`\n──────────────────────────────────────────────`);
-  console.log(` Mock backend listening on http://0.0.0.0:${PORT}`);
+  console.log(` Mock backend listening on http://${HOST}:${PORT}`);
   console.log(` Version: ${API_VERSION}`);
   console.log(` Crypto wallets endpoint: GET /api/order/crypto-wallets`);
   console.log(` Health: GET /health`);
