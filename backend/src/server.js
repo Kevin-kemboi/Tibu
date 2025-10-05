@@ -30,7 +30,6 @@ app.use((req, res, next) => {
 });
 
 const API_VERSION = '1.0.0';
-
 const PORT = process.env.PORT || 4000;
 
 // Helper: paginate array
@@ -79,7 +78,6 @@ app.post('/api/product/user/list', (req, res) => {
   if (sortOrder === 'desc') filtered.reverse();
 
   const { data, pagination } = paginate(filtered, page, limit);
-
   res.json({ success: true, products: data, pagination });
 });
 
@@ -92,7 +90,6 @@ app.get('/api/product/:id', (req, res) => {
 
 // CART ROUTES
 // Expect header: token (string). We'll just trust any token.
-
 app.post('/api/cart/get', (req, res) => {
   const token = req.headers.token || 'guest';
   const cartData = carts.get(token) || {};
@@ -138,7 +135,6 @@ app.get('/api/order/settings', (req, res) => {
 app.post('/api/order/verify-coupon', (req, res) => {
   const { couponCode, amount } = req.body || {};
   if (!couponCode) return res.json({ success: false, message: 'Coupon code required' });
-  // Simple mock: SUMMER2025 gives flat 15 off if amount >= 50
   if (couponCode.toUpperCase() === 'SUMMER2025') {
     if (amount < 50) return res.json({ success: false, message: 'Minimum order amount for this coupon is 50' });
     return res.json({ success: true, couponDetails: { code: couponCode, discount: 15 } });
@@ -180,7 +176,6 @@ app.post('/api/order/guest', (req, res) => {
   if (!amount || amount <= 0) {
     return res.status(400).json({ success: false, message: 'Invalid amount' });
   }
-  // Return a mock order id
   const orderId = 'ORD-' + Math.random().toString(36).substring(2, 10).toUpperCase();
   res.json({ success: true, orderId, message: 'Guest order accepted (mock).' });
 });
@@ -215,9 +210,10 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Internal server error' });
 });
 
-app.listen(PORT, '127.0.0.1', () => {
+// ✅ FIXED: Listen on 0.0.0.0 instead of 127.0.0.1 for Render compatibility
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`\n──────────────────────────────────────────────`);
-  console.log(` Mock backend listening on http://127.0.0.1:${PORT}`);
+  console.log(` Mock backend listening on http://0.0.0.0:${PORT}`);
   console.log(` Version: ${API_VERSION}`);
   console.log(` Crypto wallets endpoint: GET /api/order/crypto-wallets`);
   console.log(` Health: GET /health`);
